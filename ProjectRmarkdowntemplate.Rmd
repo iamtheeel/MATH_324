@@ -1,0 +1,37 @@
+---
+title: "R Project ... (Fill in project number)"
+author: "Your Name Here"
+date: "enter due date here"
+output:
+  html_document:
+    fig_height: 4
+    highlight: pygments
+    theme: spacelab
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Exercise 1:
+ 
+
+
+#### Exercise 2: 
+
+
+
+#### Exercise 3: 
+
+
+
+#### Exercise 4:
+
+
+
+
+
+
