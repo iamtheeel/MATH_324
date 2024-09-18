@@ -1,0 +1,45 @@
+---
+title: "R Project ... (Fill in project number)"
+author: "Joshua B. Mehlman"
+date: "enter due date here"
+output:
+  pdf_document: default
+  html_document:
+    fig_height: 4
+    highlight: pygments
+    theme: spacelab
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Exercise 1:
+
+```{r }
+foo = c(2,4,6,8,8,3,2,4)
+```
+
+#### Exercise 2:
+```{r}
+bar = 6
+```
+#### Exercise 3:
+```{r}
+hist(foo)
+
+```
+
+
+
+#### Exercise 4:
+
+Good discription
+```{r}
+
+```
+
+
+
