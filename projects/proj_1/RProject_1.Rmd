@@ -1,13 +1,13 @@
 ---
-title: "R Project ... (Fill in project number)"
-author: "Your Name Here"
-date: "enter due date here"
+title: "R Project ... (1)"
+author: "Joshua B. Mehlman"
+date: "September 29, 2004"
 output:
+  pdf_document: default
   html_document:
     fig_height: 4
     highlight: pygments
     theme: spacelab
-  pdf_document: default
   word_document: default
 ---
 
@@ -17,21 +17,29 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #### Exercise 1:
- 
 
+```{r }
+foo = c(2,4,6,8,8,3,2,4)
+```
 
-#### Exercise 2: 
+#### Exercise 2:
+```{r}
+bar = 6
+```
+#### Exercise 3:
+```{r}
+hist(foo)
 
-
-
-#### Exercise 3: 
+```
 
 
 
 #### Exercise 4:
 
+Good discription
+```{r}
 
-
+```
 
 
 
