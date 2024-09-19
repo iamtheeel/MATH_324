@@ -1,7 +1,7 @@
 ---
-title: "R Project ... (1)"
+title: "R Project:  1"
 author: "Joshua B. Mehlman"
-date: "September 29, 2004"
+date: "2004-09-29"
 output:
   pdf_document: default
   html_document:
@@ -17,29 +17,219 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #### Exercise 1:
+a) Save file “mlbstats.csv” at your computer:
 
+    File saved into my home: Documents/school/MATH_324/projects/proj_1
+
+b) Set working dir to where we saved mlbstats.csv:
 ```{r }
-foo = c(2,4,6,8,8,3,2,4)
+rm(list=ls()) # Clear our environment
+setwd('~/Documents/school/MATH_324/projects/proj_1') 
 ```
+
+
+c) Read in mlbstats.csv:
+```{r }
+mlbStats_table = read.csv("mlbstats.csv" , header=T)
+```
+
+
+d) Construct a stem-and-leaf display of the home run data:
+```{r }
+stem(mlbStats_table$HR, scale=1)
+```
+
+
+
+e) Does the distribution of values appear to be reasonably symmetric? If not, how would you describe the departure from symmetry?
+
+    Yes, for a value of "reasonably"
+  
+    The data is slightly skewed right.
+ 
+  
+f) Would you describe any observation as being far from the rest of the data (an outlier)? If so, which one?
+
+    The final data point (HR = 55) looks like it is an outlyer
+
+
+g) Calculate the mean and standard deviation:
+```{r}
+mean(mlbStats_table$HR)
+sd(mlbStats_table$HR)
+```
+
+
+h) Calculate the first and third quartiles:
+```{r}
+quantile(mlbStats_table$HR, 0.25) # The first quartile
+quantile(mlbStats_table$HR, 0.75) # The first quartile
+```
+
+
+i) Construct several histograms for this dataset choosing diferent classes. 
+   Vary both the quantity of classes and the limits of your classes. 
+   Give your histograms a title, x-label, and try changing the colors of the bars. 
+   Make comments about the shapes.
+```{r}
+# Things that don't change
+title = "Home Run Count By Player"
+xlab = "Number of Home Runs"
+
+# Defaults Hist
+hist(mlbStats_table$HR, main=title, xlab=xlab, include.lowest=TRUE) 
+
+# One col for each number of HRs
+hist(mlbStats_table$HR, breaks=max(mlbStats_table$HR), 
+     xlim=c(0, 60), main=title, xlab=xlab, col="Red")
+# Only 5 colums, and no outline (for reasons)
+hist(mlbStats_table$HR, breaks=5, 
+     xlim=c(0, 58), main=title, xlab=xlab, col="Green", border="Green")
+#Show Probability rather than count, with cust bin numbers
+bins = c(min(mlbStats_table$HR), 2, 7, 10, 22, 44, max(mlbStats_table$HR))
+hist(mlbStats_table$HR, breaks=bins, freq=FALSE, 
+     xlim=c(0,57), main=title, xlab=xlab, col="Blue")
+
+
+```
+
+
+The data is skewed right with a single outlyer.
+
+Using finer resolution keeps the shape, but also shows more information.
+
+Having the bar and outline color the same looks like garbage.
+\newpage
 
 #### Exercise 2:
+
+a) Save file “cellservice.csv” at your computer in the same directory used in Exercise 1.
+
+    File saved into my home: Documents/school/MATH_324/projects/proj_1
+
+
+b) Make a table from the file  cellservice.csv:
 ```{r}
-bar = 6
+rm(list=ls()) # Clear our environment
+cellServiceSatisfaction_table = read.csv('cellservice.csv', header=T)
 ```
+
+
+c) Calculate the summary statistics for each of the four companies using summary( ).
+```{r}
+# The first col is the city
+numCarriers = ncol(cellServiceSatisfaction_table) -1 
+for (carrier in 2:numCarriers)
+{
+  print(summary(cellServiceSatisfaction_table[carrier]))
+  cat("\n")
+}
+```
+
+
+d) Make comparative boxplots for the four companies, putting them on the same graph
+```{r}
+# Get the box plot of all the cols in the table
+# The first col is city name
+boxplot(cellServiceSatisfaction_table[2:numCarriers], col=rgb(0.2,0.2,0.9)) 
+
+```
+
+
+e) Comment on what the boxplots show about the customer satisfaction for each company. Which company has the least favorable customer satisfaction? Which company do you think Consumer Reports recommended? How did this company compare to the other three?
+
+    Sprint the lowest custumer satisfaction. In fact sprints mean satisfaction of 66.1% is lower than all but AT&Ts two lowest outlyers at 66% each.
+    
+    AT&T has the most variation of non outlyers, T-Mobile has the most min to max veriation, sprint has the lowest variation overall.
+
+    Based on customer satisfaction, Consumer Reports should have recommended T-Mobile. As its mean satisfaction was the highest. In fact the lowest quartile for T-Mobile was above the mean of second place AT&T
+
+\newpage
+
 #### Exercise 3:
+
+a) Use c() to generate the data:
 ```{r}
-hist(foo)
+rm(list=ls()) # Clear our environment
+nClasses = c(4,3,3,3,1,5,4,2,2,4, 5,6,4,3,3,4,4,5,6,1, 2,2,3,4,2,1,5,2,1,3)
+```
+
+
+b) Construct the frequency table using table( ):
+```{r}
+nClasses_table = table(nClasses)
+print(nClasses_table)
+```
+
+
+c) Construct a pie chart of your table using pie( ). 
+Make sure you are making a pie chart of your table, not the original data set. 
+Add colors and a title to the chart:
+```{r}
+title = "Number of Classes Each Respondent Student Is taking"
+colorPal = c(rgb(0,0,1), rgb(0,.5,.5), rgb(0,.75,.25), rgb(.25,.25,.5), rgb(.5,0,.5), rgb(1,0,0))
+pie(nClasses_table, main=title, col=colorPal)
+```
+
+
+d) Construct a bar-plot of your table using barplot( ). Add color and a title to the plot:
+```{r}
+title = "Number of Classes Each Respondent Student Is taking"
+barplot(nClasses_table, main=title, col=rainbow(length(nClasses_table)),
+        xlab="Number of Classes", ylab="Number of Students")
+```
+
+
+e) Use R functions to count how many students are taking more than three courses:
+```{r}
+nClassesGT3_list <- nClasses[nClasses > 3]
+print(nClassesGT3_list)
+sum(nClassesGT3_list)
 
 ```
 
 
+\newpage
 
 #### Exercise 4:
 
-Good discription
+a) Use seq() to generate the sequence 2, 6, 10, ..., 42
 ```{r}
+rm(list=ls()) # Clear our environment
+a_seq <- seq(from=2, to= 42, by=4)
+print(a_seq)
+```
+
+
+b) Use log( ) to generate a new sequence where each element is log-transformed from the sequence in (a).
+```{r}
+# OMG, why 2 char for '='??, Yeesh!
+# Ok, I get it, '=' means equate, not assign.
+b_log_seq <- log(a_seq) 
+print(b_log_seq)
+```
+
+
+c) Remove the third to seventh elements in the resulting sequence in (b)
+```{r}
+# keep:  0.6931472 1.7917595 <rem> 3.4011974 3.5263605 3.6375862 3.7376696
+# Keep if less than the value at pos 3, or more than the value at pos 7
+#c_log_seq <- b_log_seq[(b_log_seq < b_log_seq[3] |  b_log_seq > b_log_seq[7])  ]
+c_log_seq <- b_log_seq[-(3:7)] # Oh, much easier!
+print(c_log_seq)
 
 ```
 
+
+d) Use length( ) to obtain the length of the resulting sequence in (c).
+```{r}
+length(c_log_seq)
+```
+
+
+e) Sort the resulting sequence in (c) from high to low using sort( ):
+```{r}
+sort(c_log_seq, decreasing=TRUE)
+```
 
 
