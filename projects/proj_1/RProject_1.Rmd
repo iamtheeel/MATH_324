@@ -138,11 +138,11 @@ boxplot(cellServiceSatisfaction_table[2:numCarriers], col=rgb(0.2,0.2,0.9))
 
 e) Comment on what the boxplots show about the customer satisfaction for each company. Which company has the least favorable customer satisfaction? Which company do you think Consumer Reports recommended? How did this company compare to the other three?
 
-    Sprint the lowest custumer satisfaction. In fact sprints mean satisfaction of 66.1% is lower than all but AT&Ts two lowest outlyers at 66% each.
+    Sprint the lowest custumer satisfaction. In fact sprints meadian satisfaction of 66.1% is lower than all but AT&Ts two lowest outlyers at 66% each.
     
     AT&T has the most variation of non outlyers, T-Mobile has the most min to max veriation, sprint has the lowest variation overall.
 
-    Based on customer satisfaction, Consumer Reports should have recommended T-Mobile. As its mean satisfaction was the highest. In fact the lowest quartile for T-Mobile was above the mean of second place AT&T
+    Based on customer satisfaction, Consumer Reports should have recommended T-Mobile. As its meadian satisfaction was the highest. In fact the lowest quartile for T-Mobile was above the meadian of second place AT&T
 
 \newpage
 
